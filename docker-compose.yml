@@ -1,0 +1,34 @@
+version: '3'
+
+volumes:
+  transmission_config:
+  transmission_downloads:
+
+services:
+  extractor:
+    build: .
+    restart: unless-stopped
+    depends_on:
+      - transmission
+    environment:
+      # - NODE_ENV=development
+      - TRANSMISSION_SERVER=transmission # Default
+      - TRANSMISSION_PORT=9091 # Default
+      - TRANSMISSION_SPEED_LIMIT_DOWN=20000 # Default
+      - TRANSMISSION_SPEED_LIMIT_UP=35000 # Default
+
+  transmission:
+    image: lscr.io/linuxserver/transmission:latest
+    restart: unless-stopped
+    volumes:
+      - transmission_config:/config
+      - transmission_downloads:/downloads
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/London
+      - PEERPORT=51413
+    ports:
+      - 9091:9091
+      - 51413:51413
+      - 51413:51413/udp
