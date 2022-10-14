@@ -10,7 +10,7 @@ This project extracts the magnet links of the top 10 seeded Linux Torrents in Li
 
 # Setup
 
-### Warning: If all ports are forwarded by default, make sure to disable the access port 9091, or remove the `- 9091:9091` line from `docker-compose.yml`. This port is used for the control panel of Transmission.
+### Warning: If all ports are forwarded by default, make sure to disable the access to port 9091, or remove the `- 9091:9091` line from `docker-compose.yml`. This port is used for the control panel of Transmission.
 
 #### Step 1. Download and run the project
 
@@ -27,7 +27,7 @@ This project requires port 51413, both TCP and UDP, to be forwarded. The exact p
 # More Details
 
 - There is a hardcoded cron job in `src/app.js` to extract the magnet links every 2 hours.
-- The bandwidth is set to 20,000kbps down and 35,000kbps up, but it can be changed in `docker-compose.yml`. Setting those limits to 0 will disable them.
+- The bandwidth is set to 20,000kBps down and 35,000kBps up, but it can be changed in `docker-compose.yml`. Setting those limits to 0 will disable them.
 
 # Disclaimer
 
